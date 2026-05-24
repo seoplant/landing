@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Sign In — SEOplant"
+  description="Sign in to your SEOplant account to manage your SEO projects."
+>
+
+  <section class="section">
+    <div class="container" style="max-width:440px;">
+      <div class="card" style="padding:var(--space-2xl);">
+        <h1 style="text-align:center;margin-bottom:var(--space-xs);">Welcome Back</h1>
+        <p style="text-align:center;color:var(--color-text-muted);margin-bottom:var(--space-2xl);">Sign in to your SEOplant account</p>
+
+        <form id="login-form" onsubmit="doLogin(event)">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="you@example.com" required autofocus />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Your password" required />
+          </div>
+          <div id="error-msg" style="color:#EF4444;font-size:14px;margin-bottom:12px;display:none;"></div>
+          <button type="submit" class="btn btn-primary" style="width:100%;" id="submit-btn">Sign In</button>
+        </form>
+
+        <p style="text-align:center;margin-top:var(--space-lg);font-size:14px;color:var(--color-text-muted);">
+          Don't have an account? <a href="/register">Create one</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    async function doLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const btn = document.getElementById('submit-btn');
+      const err = document.getElementById('error-msg');
+      btn.textContent = 'Signing in...';
+      btn.disabled = true;
+      err.style.display = 'none';
+
+      try {
+        const res = await fetch('https://api.seoplant.io/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (data.access_token) {
+          localStorage.setItem('seoplant_token', data.access_token);
+          localStorage.setItem('seoplant_user', JSON.stringify(data.user));
+          window.location.href = 'https://api.seoplant.io/dashboard';
+        } else {
+          err.textContent = data.detail || 'Login failed. Check your credentials.';
+          err.style.display = 'block';
+        }
+      } catch (ex) {
+        err.textContent = 'Network error. Please try again.';
+        err.style.display = 'block';
+      } finally {
+        btn.textContent = 'Sign In';
+        btn.disabled = false;
+      }
+    }
+  </script>
+
+</BaseLayout>
+
+<style>
+  .form-group { margin-bottom: var(--space-md); }
+  .form-group label { display: block; margin-bottom: 4px; font-size: 14px; color: var(--color-text-muted); font-weight: 500; }
+  .form-group input { width: 100%; padding: 10px 14px; border: 1px solid var(--color-border); border-radius: var(--radius); background: var(--bg); color: var(--color-text); font-size: 15px; }
+  .form-group input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
+</style>

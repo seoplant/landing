@@ -94,7 +94,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
       <p>SEOplant is open source (MIT). You can run the CLI right now:</p>
 
-      <pre><code>git clone https://github.com/RichardDu1/seoplant.git
+      <pre><code>git clone https://github.com/seoplant/seoplant.git
 cd seoplant && pip install requests beautifulsoup4
 python scripts/seo_engine.py plan "your niche keyword"
 python scripts/site_builder.py scaffold ./my-site --name "My Site" --keyword "your niche"</code></pre>

@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Create Account — SEOplant"
+  description="Create your free SEOplant account and start building SEO-optimized websites."
+>
+
+  <section class="section">
+    <div class="container" style="max-width:440px;">
+      <div class="card" style="padding:var(--space-2xl);">
+        <h1 style="text-align:center;margin-bottom:var(--space-xs);">Create Account</h1>
+        <p style="text-align:center;color:var(--color-text-muted);margin-bottom:var(--space-2xl);">Free forever. 100 credits to start.</p>
+
+        <form id="register-form" onsubmit="doRegister(event)">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="you@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Min 8 characters" required minlength="8" />
+          </div>
+          <div id="error-msg" style="color:#EF4444;font-size:14px;margin-bottom:12px;display:none;"></div>
+          <button type="submit" class="btn btn-primary" style="width:100%;" id="submit-btn">Create Account</button>
+        </form>
+
+        <p style="text-align:center;margin-top:var(--space-lg);font-size:14px;color:var(--color-text-muted);">
+          Already have an account? <a href="/login">Sign in</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    async function doRegister(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const display_name = document.getElementById('name').value;
+      const btn = document.getElementById('submit-btn');
+      const err = document.getElementById('error-msg');
+      btn.textContent = 'Creating account...';
+      btn.disabled = true;
+      err.style.display = 'none';
+
+      try {
+        const res = await fetch('https://api.seoplant.io/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password, display_name })
+        });
+        const data = await res.json();
+        if (data.access_token) {
+          localStorage.setItem('seoplant_token', data.access_token);
+          localStorage.setItem('seoplant_user', JSON.stringify(data.user));
+          window.location.href = 'https://api.seoplant.io/dashboard';
+        } else {
+          err.textContent = data.detail || 'Registration failed.';
+          err.style.display = 'block';
+        }
+      } catch (ex) {
+        err.textContent = 'Network error. Please try again.';
+        err.style.display = 'block';
+      } finally {
+        btn.textContent = 'Create Account';
+        btn.disabled = false;
+      }
+    }
+  </script>
+
+</BaseLayout>
+
+<style>
+  .form-group { margin-bottom: var(--space-md); }
+  .form-group label { display: block; margin-bottom: 4px; font-size: 14px; color: var(--color-text-muted); font-weight: 500; }
+  .form-group input { width: 100%; padding: 10px 14px; border: 1px solid var(--color-border); border-radius: var(--radius); background: var(--bg); color: var(--color-text); font-size: 15px; }
+  .form-group input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
+</style>
