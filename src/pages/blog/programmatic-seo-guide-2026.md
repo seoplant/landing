@@ -116,4 +116,4 @@ Start with one template, one dataset, and 50 pages. Measure indexation rate afte
 
 ---
 
-*Ready to build your first pSEO site? [Get started free](https://api.seoplant.io/dashboard) with SEOplant.*
+*Ready to build your first pSEO site? [Get started free](https://app.seoplant.io/dashboard) with SEOplant.*

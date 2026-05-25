@@ -90,8 +90,8 @@ engine.generate("best hotels", "hotels/{slug:city}")
 - Clean repo structure, proper .gitignore, MIT license
 - 46 files committed, zero sensitive data
 - Blog posts published
-- API live at api.seoplant.io
-- Dashboard at api.seoplant.io/dashboard
+- API live at app.seoplant.io
+- Dashboard at app.seoplant.io/dashboard
 
 ## What We Learned
 
@@ -116,4 +116,4 @@ The dashboard is still rough. Stripe isn't fully wired. The pSEO engine needs mo
 
 ---
 
-*SEOplant is open source. [Star us on GitHub](https://github.com/seoplant/seoplant) or [try the cloud version](https://api.seoplant.io/dashboard).*
+*SEOplant is open source. [Star us on GitHub](https://github.com/seoplant/seoplant) or [try the cloud version](https://app.seoplant.io/dashboard).*

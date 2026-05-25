@@ -45,7 +45,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       err.style.display = 'none';
 
       try {
-        const res = await fetch('https://api.seoplant.io/api/auth/login', {
+        const res = await fetch('https://app.seoplant.io/api/auth/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password })
@@ -54,7 +54,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         if (data.access_token) {
           localStorage.setItem('seoplant_token', data.access_token);
           localStorage.setItem('seoplant_user', JSON.stringify(data.user));
-          window.location.href = 'https://api.seoplant.io/dashboard';
+          window.location.href = 'https://app.seoplant.io/dashboard';
         } else {
           err.textContent = data.detail || 'Login failed. Check your credentials.';
           err.style.display = 'block';
