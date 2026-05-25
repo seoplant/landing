@@ -20,21 +20,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           generates programmatic pages, and deploys your site.
           No code. No lock-in.
         </p>
-        <div class="hero-actions">
-          <a href="https://app.seoplant.io/register" class="btn btn-primary btn-lg">Start Building Free</a>
-          <a href="#how-it-works" class="btn btn-secondary btn-lg">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            3,200 GitHub Stars
-          </a>
-        </div>
-        <div class="hero-terminal">
-          <div class="terminal-bar"><span></span><span></span><span></span></div>
-          <pre><code><span class="dim">$</span> python seo_engine.py plan <span class="kw">"best hiking boots"</span> --type ecommerce
-
-<span class="dim">Analyzing competitors... 20 sites crawled</span>
-<span class="dim">Generating SEO strategy... 69 keywords, 3 topic clusters</span>
-
-<span class="green">Site ready:</span> hikinggearpro.com <span class="dim">(500 pages, deployed)</span></code></pre>
+        <div class="hero-input">
+          <div class="input-wrapper">
+            <span class="input-icon">&#8984;</span>
+            <input type="text" class="hero-field" placeholder="Describe your niche or paste a keyword..." />
+            <button class="input-btn" onclick="location.href='https://app.seoplant.io/register'">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+            </button>
+          </div>
+          <div class="suggestion-chips">
+            <span>Try:</span>
+            <button class="chip" onclick="document.querySelector('.hero-field').value='best hiking boots review site'">best hiking boots review site</button>
+            <button class="chip" onclick="document.querySelector('.hero-field').value='London dentist SEO landing page'">London dentist SEO landing page</button>
+            <button class="chip" onclick="document.querySelector('.hero-field').value='Scottish Highlands travel blog'">Scottish Highlands travel blog</button>
+            <button class="chip" onclick="document.querySelector('.hero-field').value='SaaS product comparison site'">SaaS product comparison site</button>
+          </div>
         </div>
       </div>
     </div>
@@ -199,11 +199,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="grid cols-4" style="margin-top:var(--space-3xl);align-items:stretch;">
         <div class="pricing-card">
           <h3>Open Source</h3>
-          <div class="price">Free</div>
+          <div class="price">$0</div>
           <p class="price-sub">MIT License. Self-hosted.</p>
           <ul>
             <li>5 pipeline modules</li>
-            <li>Real-time SEO data</li>
+            <li><strong>Real SEO data</strong> — see actual SV, KD <li>AI writes 15 articles/mo</li>amp; CPC</li>
             <li>Astro site generation</li>
             <li>1 project</li>
           </ul>
@@ -214,8 +214,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <div class="price">$29<span>/mo</span></div>
           <p class="price-sub">Real data. AI content.</p>
           <ul>
-            <li>Real-time SEO data</li>
-            <li>AI content (10 articles/mo)</li>
+            <li><strong>Real SEO data</strong> — see actual SV, KD <li>AI writes 15 articles/mo</li>amp; CPC</li>
+            <li>One-click deploy</li>
             <li>pSEO (50 pages/mo)</li>
             <li>3 projects</li>
             <li>500 credits</li>
@@ -300,51 +300,94 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     max-width: 600px;
     margin: 0 auto var(--space-2xl);
   }
-  .hero-actions {
-    display: flex;
-    gap: var(--space-md);
-    justify-content: center;
-    margin-bottom: var(--space-3xl);
-    flex-wrap: wrap;
-  }
 
-  /* Terminal */
-  .hero-terminal {
-    max-width: 600px;
-    margin: 0 auto;
-    background: #0d1117;
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(255,255,255,0.1);
-    overflow: hidden;
-    box-shadow: var(--shadow-xl);
-    text-align: left;
+  /* Hero input interface */
+  .hero-input {
+    max-width: 660px;
+    margin: var(--space-2xl) auto 0;
   }
-  .terminal-bar {
+  .input-wrapper {
     display: flex;
-    gap: 8px;
-    padding: 12px 16px;
-    background: #161b22;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    align-items: center;
+    gap: 12px;
+    background: var(--color-background);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 6px 6px 6px 20px;
+    box-shadow: var(--shadow-lg);
+    transition: border-color var(--transition-fast);
   }
-  .terminal-bar span {
-    width: 12px; height: 12px; border-radius: 50%;
+  .input-wrapper:focus-within {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-lg), 0 0 0 4px rgba(59,130,246,0.1);
   }
-  .terminal-bar span:nth-child(1) { background: #ff5f57; }
-  .terminal-bar span:nth-child(2) { background: #febc2e; }
-  .terminal-bar span:nth-child(3) { background: #28c840; }
-  .hero-terminal pre {
-    padding: 20px 24px;
-    margin: 0;
-    font-size: 0.9rem;
-    line-height: 1.8;
-    color: #c9d1d9;
-    font-family: var(--font-mono);
-    background: transparent;
+  .input-icon {
+    font-size: 1.3rem;
+    opacity: 0.35;
+    flex-shrink: 0;
+  }
+  .hero-field {
+    flex: 1;
     border: none;
+    background: transparent;
+    font-size: 1.05rem;
+    font-family: inherit;
+    color: var(--color-text);
+    outline: none;
+    padding: 12px 0;
   }
-  .hero-terminal .dim { color: #6e7681; }
-  .hero-terminal .kw { color: #79c0ff; }
-  .hero-terminal .green { color: #56d364; }
+  .hero-field::placeholder {
+    color: var(--color-text-muted);
+  }
+  .input-btn {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--color-gradient-subtle);
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-md);
+  }
+  .input-btn:hover {
+    transform: scale(1.08);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+  }
+  .suggestion-chips {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+    padding: 0 4px;
+  }
+  .suggestion-chips span {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    flex-shrink: 0;
+  }
+  .chip {
+    padding: 6px 16px;
+    border-radius: 100px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    font-family: inherit;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+  }
+  .chip:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background: var(--color-primary-light);
+  }
 
   /* Sections */
   .section-header {
@@ -465,6 +508,4 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .hero-sub { font-size: 1rem; }
     .steps { grid-template-columns: 1fr; gap: var(--space-xl); }
     .pricing-card.featured { transform: none; }
-    .hero-actions { flex-direction: column; align-items: center; }
-  }
 </style>
