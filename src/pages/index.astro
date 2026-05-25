@@ -196,7 +196,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <span class="section-label">Pricing</span>
         <h2>Start free, scale as you grow</h2>
       </div>
-      <div class="grid cols-3" style="margin-top:var(--space-3xl);align-items:stretch;">
+      <div class="grid cols-4" style="margin-top:var(--space-3xl);align-items:stretch;">
         <div class="pricing-card">
           <h3>Open Source</h3>
           <div class="price">Free</div>
@@ -205,23 +205,35 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <li>5 pipeline modules</li>
             <li>Heuristic SEO analysis</li>
             <li>Astro site generation</li>
-            <li>VPS/Cloud deployment</li>
-            <li>Community support</li>
+            <li>1 project</li>
           </ul>
           <a href="https://github.com/seoplant/seoplant" class="btn btn-secondary" style="width:100%;">GitHub</a>
         </div>
+        <div class="pricing-card">
+          <h3>Starter</h3>
+          <div class="price">$29<span>/mo</span></div>
+          <p class="price-sub">Real data. AI content.</p>
+          <ul>
+            <li>Real-time SEO data</li>
+            <li>AI content (10 articles/mo)</li>
+            <li>pSEO (50 pages/mo)</li>
+            <li>3 projects</li>
+            <li>500 credits</li>
+          </ul>
+          <a href="https://app.seoplant.io/register" class="btn btn-secondary" style="width:100%;">Start Free Trial</a>
+        </div>
         <div class="pricing-card featured">
           <div class="featured-badge">Most Popular</div>
-          <h3>Cloud</h3>
+          <h3>Pro</h3>
           <div class="price">$79<span>/mo</span></div>
-          <p class="price-sub">Real data. Real scale.</p>
+          <p class="price-sub">Full power. Full scale.</p>
           <ul>
-            <li>Everything in Open Source</li>
-            <li>Real-time SEO data (real SV, KD, CPC)</li>
-            <li>Programmatic SEO (5000 pages)</li>
-            <li>AI agent orchestration</li>
-            <li>10 sites included</li>
-            <li>2,000 AI credits/month</li>
+            <li>Everything in Starter</li>
+            <li>AI content (100 articles/mo)</li>
+            <li>Unlimited pSEO pages</li>
+            <li>Rank monitoring</li>
+            <li>Content decay detection</li>
+            <li>10 projects &middot; 2000 credits</li>
           </ul>
           <a href="https://app.seoplant.io/register" class="btn btn-primary" style="width:100%;">Start Free Trial</a>
         </div>
@@ -230,12 +242,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <div class="price">$199<span>/mo</span></div>
           <p class="price-sub">For teams & agencies.</p>
           <ul>
-            <li>Everything in Cloud</li>
-            <li>50 sites included</li>
+            <li>Everything in Pro</li>
+            <li>50 projects</li>
             <li>White-label reports</li>
             <li>Client dashboard</li>
-            <li>API access</li>
-            <li>5,000 AI credits/month</li>
+            <li>REST API access</li>
+            <li>5000 credits &middot; Slack support</li>
           </ul>
           <a href="https://app.seoplant.io/register" class="btn btn-secondary" style="width:100%;">Get Started</a>
         </div>
@@ -433,6 +445,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   /* Grids */
   .cols-3 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .cols-4 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
   .cols-2 { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); }
 
   /* Table */
