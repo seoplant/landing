@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="Docs — SEOplant"
-  description="SEOplant documentation: quick start guide, CLI reference, API docs, deployment guide, and programmatic SEO tutorials."
+  description="Learn how to use SEOplant to research competitors, build SEO strategies, generate content, and deploy ranking websites."
 >
 
   <section class="section">
@@ -16,89 +16,78 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         Everything you need to go from keyword to ranking website.
       </p>
 
-      <h2>Quick Start</h2>
-      <div class="terminal">
-        <pre><code>git clone https://github.com/seoplant/seoplant.git
-cd seoplant
-pip install requests beautifulsoup4
+      <h2>Getting Started</h2>
+      <ol>
+        <li><a href="https://app.seoplant.io/register">Create a free account</a> — no credit card required</li>
+        <li>Create your first project — enter a keyword or niche</li>
+        <li>Run a competitor analysis — see who ranks and why</li>
+        <li>Generate your SEO strategy — topic clusters, content calendar, keyword priorities</li>
+        <li>Build and deploy your site</li>
+      </ol>
 
-# Analyze competitors
-python scripts/competitor_intel.py report "your niche keyword"
-
-# Generate SEO plan
-python scripts/seo_engine.py plan "your niche keyword" --type website
-
-# Scaffold Astro site
-python scripts/site_builder.py scaffold ./my-site --name "My Site" --keyword "your niche"
-
-# Build & preview
-cd my-site && npm install && npm run dev</code></pre>
-      </div>
-
-      <h2>Pipeline Modules</h2>
+      <h2>How It Works</h2>
 
       <h3>1. Competitor Intelligence</h3>
-      <p>Discovers competitors via Jina Search, crawls their websites, analyzes SEO signals (titles, meta, headings, schema, content depth), checks social media presence, and generates a SWOT report.</p>
-      <div class="terminal"><pre><code>python scripts/competitor_intel.py report "best hiking boots"</code></pre></div>
+      <p>Enter a keyword. Our engine searches across multiple engines to find the top-ranking competitors in your niche. It crawls their websites, analyzes their SEO signals — title tags, meta descriptions, heading hierarchy, schema markup, content depth, internal linking — and generates a SWOT report showing exactly where you can beat them.</p>
 
-      <h3>2. SEO/GEO Engine</h3>
-      <p>Expands keywords with heuristic patterns (or DataForSEO real data), clusters by topic and intent, assesses difficulty, generates a 6-month content calendar, and produces GEO configuration (llms.txt, Schema.org templates).</p>
-      <div class="terminal"><pre><code>python scripts/seo_engine.py plan "scottish highlands travel" --type travel --langs en,zh</code></pre></div>
+      <h3>2. SEO Strategy</h3>
+      <p>Real search volume data powers your strategy. See actual monthly searches, keyword difficulty scores, CPC values, and search intent for every keyword. Get a 6-month content calendar with pillar pages, cluster topics, and priority rankings — so you know exactly what to build first.</p>
 
-      <h3>3. Design Intelligence</h3>
-      <p>Searches design galleries (Awwwards, SiteInspire, Godly, Land-book, Mobbin) for niche-relevant inspiration, extracts design tokens (colors, fonts, spacing) from real websites, and fuses multiple designs into a unified DESIGN.md.</p>
-      <div class="terminal"><pre><code>python scripts/design_intel.py search "travel website"
-python scripts/design_intel.py extract "https://example.com"
-python scripts/design_intel.py fuse --keywords "scotland travel" --type travel</code></pre></div>
+      <h3>3. Content Generation</h3>
+      <p>AI writes SEO-optimized articles tailored to your keywords. Each article targets specific search intent, includes proper heading hierarchy, and passes through our humanizer to read naturally. Starter plan includes 15 articles/month, Pro includes 100.</p>
 
-      <h3>4. Site Builder</h3>
-      <p>Scaffolds a complete Astro 5.x project: BaseLayout, SEOHead, Header/Footer components, global CSS from DESIGN.md tokens, i18n routing, Schema.org structured data, robots.txt, sitemap config.</p>
-      <div class="terminal"><pre><code>python scripts/site_builder.py scaffold ./my-site \
-  --name "My Travel Site" \
-  --keyword "scottish highlands travel" \
-  --url "https://mysite.com" \
-  --design DESIGN.md</code></pre></div>
+      <h3>4. Programmatic SEO</h3>
+      <p>Scale from 1 page to thousands. Upload a dataset (cities, products, categories) and our template engine generates unique, SEO-optimized pages for every row — with automatic internal linking and content variation to avoid duplicate content penalties.</p>
 
-      <h3>5. Deployer</h3>
-      <p>Deploys built sites to: customer VPS (SSH push with Caddy/Nginx bootstrap), Vercel, Cloudflare Pages, or generates manual deployment packages.</p>
-      <div class="terminal"><pre><code># One-click VPS deploy
-python scripts/deployer.py deploy ./my-site mysite.com \
-  --host 12.34.56.78 --user root --caddy
+      <h3>5. Deployment</h3>
+      <p>One-click deploy to your own server, or use our recommended hosting partners. Your site is standard code — you own it, you can export it, no lock-in.</p>
 
-# Generate config files for manual setup
-python scripts/deployer.py package ./my-site mysite.com --analytics</code></pre></div>
+      <h2>Pricing & Credits</h2>
+      <p>Every operation costs credits. Free accounts get 50 one-time credits — enough for 1 competitor analysis and 1 full SEO strategy plan. Paid plans include monthly credit refreshes.</p>
 
-      <h2>DataForSEO Integration</h2>
-      <p>For real keyword data (search volume, CPC, competition, keyword difficulty), set environment variables:</p>
-      <div class="terminal"><pre><code>export DATAFORSEO_EMAIL="your@email.com"
-export DATAFORSEO_PASSWORD="your-api-password"
-
-# Now seo_engine.py automatically uses real data
-python scripts/seo_engine.py plan "best hiking boots" --type ecommerce</code></pre></div>
-      <p>The DataForSEO client also provides standalone CLI access:</p>
-      <div class="terminal"><pre><code>python scripts/dataforseo_client.py volume "hiking boots,trail shoes,camping gear"
-python scripts/dataforseo_client.py related "best hiking boots"
-python scripts/dataforseo_client.py serp "scottish highlands travel"
-python scripts/dataforseo_client.py competitors "rei.com"</code></pre></div>
-
-      <h2>Deployment Options</h2>
       <table>
-        <thead><tr><th>Target</th><th>Command</th><th>Best For</th></tr></thead>
+        <thead><tr><th>Operation</th><th>Credits</th></tr></thead>
         <tbody>
-          <tr><td><strong>Own VPS (Caddy)</strong></td><td><code>deploy ./site domain.com --host IP --caddy</code></td><td>Full control, $5/mo</td></tr>
-          <tr><td><strong>Own VPS (Nginx)</strong></td><td><code>deploy ./site domain.com --host IP --nginx</code></td><td>Existing Nginx setups</td></tr>
-          <tr><td><strong>Vercel</strong></td><td><code>vercel ./site</code></td><td>Free tier, auto-SSL</td></tr>
-          <tr><td><strong>Cloudflare Pages</strong></td><td><code>cloudflare ./site</code></td><td>Global CDN, free tier</td></tr>
-          <tr><td><strong>Manual</strong></td><td><code>package ./site domain.com</code></td><td>Generate configs, DIY</td></tr>
+          <tr><td>Competitor Analysis</td><td>5</td></tr>
+          <tr><td>SEO Strategy Plan</td><td>10</td></tr>
+          <tr><td>Site Generation</td><td>20</td></tr>
+          <tr><td>AI Article (500 words)</td><td>3</td></tr>
+          <tr><td>AI Pillar Page (2000 words)</td><td>10</td></tr>
+          <tr><td>Programmatic Page</td><td>1</td></tr>
+          <tr><td>Deployment</td><td>5</td></tr>
+          <tr><td>Rank Check (per keyword)</td><td>1</td></tr>
         </tbody>
       </table>
 
-      <h2>More Resources</h2>
-      <ul>
-        <li><a href="https://github.com/seoplant/seoplant">GitHub Repository</a></li>
-        <li><a href="/blog">Blog & Tutorials</a></li>
-        <li><a href="/pricing">Pricing Plans</a></li>
-      </ul>
+      <p style="margin-top:var(--space-lg);">See <a href="/pricing">pricing</a> for plan details and credit limits.</p>
+
+      <h2>SEO Best Practices</h2>
+
+      <h3>Keyword Research</h3>
+      <p>Start with long-tail keywords (3-5 words). They have lower competition and higher conversion intent. Use the competitor analysis to find gaps your competitors are missing.</p>
+
+      <h3>Content Structure</h3>
+      <p>Every page should have: one H1, clear H2/H3 hierarchy, short paragraphs (2-4 sentences), bullet points for scannability, and an FAQ section. Our generator handles this automatically.</p>
+
+      <h3>Internal Linking</h3>
+      <p>Link related pages together. City pages should link to other city pages in the same country. Product pages should link to comparison pages. Our programmatic engine builds these links automatically.</p>
+
+      <h3>Monitoring</h3>
+      <p>SEO is not set-and-forget. Track your rankings, watch for content decay, and refresh underperforming pages. Pro plan includes automated rank monitoring and decay detection.</p>
+
+      <h2>FAQ</h2>
+
+      <h4>Can I export my site?</h4>
+      <p>Yes. Generated sites are standard projects. Export the code and deploy anywhere — your own server, any cloud platform. No proprietary format.</p>
+
+      <h4>Do I need my own server?</h4>
+      <p>No. We can deploy to recommended hosting partners. If you prefer your own server, we support that too.</p>
+
+      <h4>What's the difference from other SEO tools?</h4>
+      <p>Other tools do one thing: analyze, write content, or build sites. We do all three in one pipeline — from keyword research to deployed website.</p>
+
+      <h4>Is my data shared with AI models?</h4>
+      <p>No. Your SEO data and content are private. We do not use your data to train models.</p>
 
     </div>
   </section>
@@ -108,40 +97,19 @@ python scripts/dataforseo_client.py competitors "rei.com"</code></pre></div>
 <style>
   h2 { margin-top: var(--space-3xl); margin-bottom: var(--space-md); }
   h3 { margin-top: var(--space-xl); }
-  .terminal {
-    background: #0d1117;
-    border-radius: 8px;
-    padding: var(--space-md) var(--space-lg);
-    margin: var(--space-md) 0;
-    overflow-x: auto;
-  }
-  .terminal pre {
-    margin: 0;
-    font-size: 0.85rem;
-    line-height: 1.6;
-    color: #c9d1d9;
-    font-family: var(--font-mono);
-  }
-  .terminal code {
-    background: none;
-    padding: 0;
-    color: inherit;
-  }
+  h4 { margin-top: var(--space-lg); }
+  ol { padding-left: 20px; }
+  ol li { padding: 4px 0; line-height: 1.6; }
   table {
     width: 100%;
     border-collapse: collapse;
     margin: var(--space-md) 0;
+    font-size: 0.9rem;
   }
   th, td {
     padding: 10px 14px;
     text-align: left;
     border-bottom: 1px solid var(--color-border);
   }
-  th { background: var(--color-surface); }
-  code {
-    font-size: 0.85rem;
-    background: var(--color-surface);
-    padding: 2px 6px;
-    border-radius: 4px;
-  }
+  th { background: var(--color-surface); font-weight: 600; }
 </style>

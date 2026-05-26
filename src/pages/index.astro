@@ -23,17 +23,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="hero-input">
           <div class="input-wrapper">
             <span class="input-icon">&#8984;</span>
-            <input type="text" class="hero-field" placeholder="Describe your niche or paste a keyword..." />
-            <button class="input-btn" onclick="location.href='https://app.seoplant.io/register'">
+            <input type="text" class="hero-field" id="hero-kw" placeholder="Describe your niche or paste a keyword..." />
+            <button class="input-btn" onclick="startBuilding()">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
             </button>
           </div>
           <div class="suggestion-chips">
             <span>Try:</span>
-            <button class="chip" onclick="document.querySelector('.hero-field').value='best hiking boots review site'">best hiking boots review site</button>
-            <button class="chip" onclick="document.querySelector('.hero-field').value='London dentist SEO landing page'">London dentist SEO landing page</button>
-            <button class="chip" onclick="document.querySelector('.hero-field').value='Scottish Highlands travel blog'">Scottish Highlands travel blog</button>
-            <button class="chip" onclick="document.querySelector('.hero-field').value='SaaS product comparison site'">SaaS product comparison site</button>
+            <button class="chip" onclick="document.getElementById('hero-kw').value='best hiking boots review site'">best hiking boots review site</button>
+            <button class="chip" onclick="document.getElementById('hero-kw').value='London dentist SEO landing page'">London dentist SEO landing page</button>
+            <button class="chip" onclick="document.getElementById('hero-kw').value='Scottish Highlands travel blog'">Scottish Highlands travel blog</button>
+            <button class="chip" onclick="document.getElementById('hero-kw').value='SaaS product comparison site'">SaaS product comparison site</button>
+        <script is:inline>
+          function startBuilding() {
+            var kw = document.getElementById("hero-kw").value.trim();
+            if (!kw) {
+              document.getElementById("hero-kw").focus();
+              return;
+            }
+            window.location.href = "https://app.seoplant.io/dashboard?kw=" + encodeURIComponent(kw);
+          }
+        </script>
           </div>
         </div>
       </div>
@@ -198,27 +208,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
       <div class="grid cols-4" style="margin-top:var(--space-3xl);align-items:stretch;">
         <div class="pricing-card">
-          <h3>Open Source</h3>
+          <h3>Free</h3>
           <div class="price">$0</div>
-          <p class="price-sub">MIT License. Self-hosted.</p>
+          <p class="price-sub">Try the full pipeline. No credit card.</p>
           <ul>
-            <li>5 pipeline modules</li>
-            <li><strong>Real SEO data</strong> — see actual SV, KD <li>AI writes 15 articles/mo</li>amp; CPC</li>
-            <li>Astro site generation</li>
+            <li><strong>Real SEO data</strong> — see actual SV, KD &amp; CPC</li>
+            <li>1 competitor analysis (5 credits)</li>
+            <li>1 full SEO strategy plan (10 credits)</li>
             <li>1 project</li>
           </ul>
-          <a href="https://app.seoplant.io/register" class="btn btn-secondary" style="width:100%;">Get Started Free</a>
+          <a href="https://app.seoplant.io/register" class="btn btn-secondary" style="width:100%;">Try Free</a>
         </div>
         <div class="pricing-card">
           <h3>Starter</h3>
           <div class="price">$29<span>/mo</span></div>
-          <p class="price-sub">Real data. AI content.</p>
+          <p class="price-sub">For your first real SEO project.</p>
           <ul>
-            <li><strong>Real SEO data</strong> — see actual SV, KD <li>AI writes 15 articles/mo</li>amp; CPC</li>
+            <li><strong>Everything in Free, plus:</strong></li>
+            <li>500 credits every month</li>
+            <li>AI writes 15 articles/mo</li>
+            <li>Programmatic SEO (50 pages/mo)</li>
             <li>One-click deploy</li>
-            <li>pSEO (50 pages/mo)</li>
             <li>3 projects</li>
-            <li>500 credits</li>
           </ul>
           <a href="https://app.seoplant.io/register" class="btn btn-secondary" style="width:100%;">Start Free Trial</a>
         </div>
@@ -226,28 +237,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <div class="featured-badge">Most Popular</div>
           <h3>Pro</h3>
           <div class="price">$79<span>/mo</span></div>
-          <p class="price-sub">Full power. Full scale.</p>
+          <p class="price-sub">Scale your SEO operation.</p>
           <ul>
-            <li>Everything in Starter</li>
-            <li>AI content (100 articles/mo)</li>
-            <li>Unlimited pSEO pages</li>
-            <li>Rank monitoring</li>
-            <li>Content decay detection</li>
-            <li>10 projects &middot; 2000 credits</li>
+            <li><strong>Everything in Starter, plus:</strong></li>
+            <li>2,000 credits/month</li>
+            <li>AI writes 100 articles/mo</li>
+            <li><strong>Unlimited</strong> programmatic SEO pages</li>
+            <li>Rank monitoring + decay alerts</li>
+            <li>10 projects</li>
           </ul>
           <a href="https://app.seoplant.io/register" class="btn btn-primary" style="width:100%;">Start Free Trial</a>
         </div>
         <div class="pricing-card">
           <h3>Agency</h3>
           <div class="price">$199<span>/mo</span></div>
-          <p class="price-sub">For teams & agencies.</p>
+          <p class="price-sub">For teams building client sites.</p>
           <ul>
-            <li>Everything in Pro</li>
+            <li><strong>Everything in Pro, plus:</strong></li>
+            <li>5,000 credits/month</li>
+            <li>AI writes 500 articles/mo</li>
             <li>50 projects</li>
             <li>White-label reports</li>
-            <li>Client dashboard</li>
-            <li>REST API access</li>
-            <li>5000 credits &middot; Slack support</li>
+            <li>REST API + Slack support</li>
           </ul>
           <a href="https://app.seoplant.io/register" class="btn btn-secondary" style="width:100%;">Get Started</a>
         </div>
